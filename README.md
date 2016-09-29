@@ -31,7 +31,7 @@ element(by.css('someCSS')).click();
 element(by.css('someCSS')).sendKeys('some text');
 ```
 
-#### Goto a url
+#### Go to a url
 ```
 browser.get('http://example.com/something');
 ```
