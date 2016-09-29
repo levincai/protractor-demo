@@ -1,0 +1,8 @@
+{
+	"cogs": {
+		"sitelinks": {
+			"_": true,
+			"masthead_tray": true
+		}
+	}
+}

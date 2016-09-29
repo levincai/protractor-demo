@@ -1,0 +1,62 @@
+.form_demo, .form_demoLG {
+	padding: 5px 20px 0;
+
+	input, textarea {
+		display: block;
+		width: 100%;
+	}
+
+	button {
+		width: 100%;
+		background: green;
+		padding: 10px;
+		margin: 10px 0 5px 0;
+		color: white;
+	}
+
+	.error, .success, .errorLG, .successLG {
+		width: 100%;
+		text-align: center;
+	}
+
+	.error, .errorLG {
+		color: red;
+	}
+
+	.success, .successLG {
+		color: green;
+	}
+
+	input[type="checkbox"] {
+		float: left;
+		width: 25%;
+		display: inline;
+		margin: 7px 0 0 0
+	}
+
+	label[for="agree"] {
+		float: left;
+		width: 70%;
+	}
+
+	#agreeLG input[type="checkbox"] {
+		float: left;
+		width: 10px;
+		display: inline;
+		margin: 7px 0 0 0
+	}
+
+	#agreeLG label[for="agree"] {
+		float: left;
+	}
+
+	textarea {
+		margin-bottom: 5px;
+	}
+}
+
+
+.form_demoLG {
+	width: 800px;
+	margin: 0 auto;
+}

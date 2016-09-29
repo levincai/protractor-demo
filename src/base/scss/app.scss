@@ -1,0 +1,20 @@
+@import "variables";
+@import "awf";
+@import "../../cogs/button_demo/scss/button";
+@import "../../cogs/form_demo/scss/form";
+@import "../../cogs/list_demo/scss/list";
+@import "../../cogs/about/scss/about";
+
+body {
+	font-size: $main_font_size;
+	font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+a:hover, a:focus{
+	outline: none;
+	text-decoration: none;
+}
+
+#aboutImg{
+	cursor: pointer;
+}

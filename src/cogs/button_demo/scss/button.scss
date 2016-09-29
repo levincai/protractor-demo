@@ -1,0 +1,37 @@
+.button_demo, .button_demoLG{
+	padding: 20px;
+
+	h1 {
+		text-align: center;
+		margin-bottom: 80px;
+	}
+
+	.fillMe {
+		width: 40%;
+		height: 100px;
+		background: none;
+		border: 1px solid grey;
+		margin: 40px auto 20px;
+		&.red {
+			background: red;
+		}
+		&.blue {
+			background: blue;
+		}
+		&.green {
+			background: green;
+		}
+	}
+
+	button {
+		box-sizing: border-box;
+		width: 30%;
+		border: 1px solid grey;
+		padding: 10px;
+		float: left;
+		margin-right: 10px;
+		&:last-child{
+			margin-right: 0;
+		}
+	}
+}

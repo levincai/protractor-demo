@@ -1,0 +1,126 @@
+.masthead-user .awf-dropdown__wrapper__content .awf-dropdown__avatar .image-circle {
+  margin: 35px auto 0;
+  display: block; }
+.masthead-user .awf-dropdown__wrapper__content .awf-dropdown__name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.9rem;
+  margin-top: 12px;
+  text-align: center; }
+.masthead-user .awf-dropdown__wrapper__content .awf-dropdown__email {
+  text-decoration: none;
+  text-align: center;
+  margin-top: 2px; }
+.masthead-user .awf-dropdown__wrapper__content .awf-dropdown__msg {
+  margin: 20px -10px -10px;
+  line-height: normal; }
+  .masthead-user .awf-dropdown__wrapper__content .awf-dropdown__msg a {
+    display: block;
+    padding: 15px 10px 13px 44px;
+    position: relative; }
+    .masthead-user .awf-dropdown__wrapper__content .awf-dropdown__msg a:hover {
+      text-decoration: none; }
+    .masthead-user .awf-dropdown__wrapper__content .awf-dropdown__msg a p {
+      margin: 0; }
+    .masthead-user .awf-dropdown__wrapper__content .awf-dropdown__msg a em {
+      position: absolute;
+      left: 9px;
+      top: 19px;
+      font-size: 25px;
+      line-height: 27px; }
+
+.masthead__logo .-is-w3 {
+  font-size: 4.0rem;
+  padding-top: 5px;
+  height: 100%; }
+
+.footer__logo .-is-w3 {
+  overflow: hidden;
+  font-size: 5rem;
+  height: 30px; }
+
+.footer__logo .-is-w3 .awficon-ibm-logo {
+  position: relative;
+  top: -18px; }
+
+/*------------------------------------*\
+    #CONTRAST THEME SPECIFIC STYLES
+\*------------------------------------*/
+html.contrast .masthead {
+  background-color: #000; }
+
+html.contrast .masthead .nav-toggle,
+html.contrast .masthead .nav-toggle:hover,
+html.contrast .masthead .nav-toggle:active,
+html.contrast .masthead .nav-toggle:focus,
+html.contrast .masthead .nav-toggle.-is-active,
+html.contrast .masthead .masthead__logo,
+html.contrast .masthead .masthead__name,
+html.contrast .masthead .masthead__name .-color-alt,
+html.contrast .awf-custom-name__form__cancel.-awf-link,
+html.contrast .awf-custom-name__form__cancel.-awf-link:hover,
+html.contrast .awf-custom-name__form__cancel.-awf-link:focus,
+html.contrast .awf-custom-name__form__cancel.-awf-link:active,
+html.contrast .awf-custom-name__form__cancel.-awf-link.-is-active,
+html.contrast .masthead-trays__button-collection .-awf-link,
+html.contrast .masthead-trays__button-collection .-awf-link:hover,
+html.contrast .masthead-trays__button-collection .-awf-link:focus,
+html.contrast .masthead-trays__button-collection .-awf-link:active,
+html.contrast .masthead-trays__button-collection .-awf-link.-is-active,
+html.contrast .masthead-trays__button-collection .btn-control.-is-active,
+html.contrast .masthead-user__signin.-awf-link-inverted,
+html.contrast .masthead-user__signin.-awf-link-inverted:hover,
+html.contrast .masthead-user__signin.-awf-link-inverted:focus,
+html.contrast .masthead-user__signin.-awf-link-inverted:active,
+html.contrast .masthead-user__signin.-awf-link-inverted.-is-active,
+html.contrast .masthead-user__dropdown .awf-dropdown__button.-awf-link,
+html.contrast .masthead-user__dropdown .awf-dropdown__button.-awf-link:hover,
+html.contrast .masthead-user__dropdown .awf-dropdown__button.-awf-link:focus,
+html.contrast .masthead-user__dropdown .awf-dropdown__button.-awf-link:active,
+html.contrast .masthead-user__dropdown .awf-dropdown__button.-awf-link.-is-active,
+html.contrast .awf-search__mobile-toggle.-awf-link,
+html.contrast .awf-search__mobile-toggle.-awf-link:hover,
+html.contrast .awf-search__mobile-toggle.-awf-link:focus,
+html.contrast .awf-search__mobile-toggle.-awf-link:active,
+html.contrast .awf-search__mobile-toggle.-awf-link.-is-active {
+  color: #fff; }
+
+html.contrast .masthead-user__signin.-awf-link-inverted:hover,
+html.contrast .masthead-user__signin.-awf-link-inverted:focus,
+html.contrast .masthead-user__signin.-awf-link-inverted:active,
+html.contrast .masthead-user__signin.-awf-link-inverted.-is-active,
+html.contrast .masthead-user__signin.-awf-link-inverted:hover > *,
+html.contrast .masthead-user__signin.-awf-link-inverted:focus > *,
+html.contrast .masthead-user__signin.-awf-link-inverted:active > *,
+html.contrast .masthead-user__signin.-awf-link-inverted.-is-active > * {
+  text-decoration: underline; }
+
+html.contrast .masthead .nav-toggle.-awf-focus:focus,
+html.contrast .awf-custom-name__form__input.-awf-focus:focus,
+html.contrast .awf-search__input.-awf-focus:focus {
+  -webkit-box-shadow: 0px 0px 6px 0px #fff;
+  -moz-box-shadow: 0px 0px 6px 0px #fff;
+  box-shadow: 0px 0px 6px 0px #fff; }
+
+html.contrast .awf-custom-name.-is-editable .awf-custom-name__btn:hover,
+html.contrast .awf-custom-name.-is-editable .awf-custom-name__btn:focus,
+html.contrast .masthead__user {
+  border-color: #fff; }
+
+html.contrast .awf-custom-name__form__submit.awf-btn {
+  color: #000;
+  background-color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #fff; }
+
+html.contrast .awf-custom-name__form__submit.awf-btn:hover,
+html.contrast .awf-custom-name__form__submit.awf-btn:active,
+html.contrast .awf-custom-name__form__submit.awf-btn:focus {
+  color: #fff;
+  background-color: #000; }
+
+html.contrast .masthead-user__dropdown .awf-dropdown__button .image-circle {
+  border-color: #fff; }
+
+/*# sourceMappingURL=w3-feature-pack.css.map */

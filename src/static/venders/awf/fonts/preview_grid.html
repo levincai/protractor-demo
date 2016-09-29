@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FontCustom glyphs preview</title>
+
+    <style>
+      /* Page Styles */
+      html {
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+         -webkit-font-smoothing: antialiased;
+                 font-smoothing: antialiased;
+      }
+      * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #fff;
+        color: #444;
+        font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      a,
+      a:visited {
+        color: #888;
+        text-decoration: underline;
+      }
+      a:hover,
+      a:focus { color: #000; }
+      header {
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 20px;
+        overflow: hidden;
+        padding: 20px 0;
+      }
+      header h1 {
+        color: #888;
+        float: left;
+        font-size: 36px;
+        font-weight: 300;
+      }
+      header a {
+        float: right;
+        font-size: 14px;
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 1200px;
+        min-width: 960px;
+        padding: 0 40px;
+        width: 90%;
+      }
+      .glyph {
+        border-bottom: 1px dotted #ccc;
+        padding: 10px 0 20px;
+        margin-bottom: 20px;
+      }
+      .preview-glyphs { vertical-align: bottom; }
+      .preview-scale {
+        color: #888;
+        font-size: 32px;
+        margin-top: 5px;
+      }
+      .step {
+        display: inline-block;
+        line-height: 1;
+        position: relative;
+        width: 10%;
+      }
+      .step .letters,
+      .step i {
+        -webkit-transition: opacity .3s;
+        -moz-transition: opacity .3s;
+        -ms-transition: opacity .3s;
+        -o-transition: opacity .3s;
+        transition: opacity .3s;
+      }
+      .step:hover .letters { opacity: 1; }
+      .step:hover i { opacity: .3; }
+      .letters {
+        opacity: .3;
+        position: absolute;
+      }
+      .characters-off .letters { display: none; }
+      .characters-off .step:hover i { opacity: 1; }
+      
+      .size-12 { font-size: 12px; }
+      
+      .size-14 { font-size: 14px; }
+      
+      .size-16 { font-size: 16px; }
+      
+      .size-18 { font-size: 18px; }
+      
+      .size-21 { font-size: 21px; }
+      
+      .size-24 { font-size: 24px; }
+      
+      .size-36 { font-size: 36px; }
+      
+      .size-48 { font-size: 48px; }
+      
+      .size-60 { font-size: 60px; }
+      
+      .size-72 { font-size: 72px; }
+      
+      .usage { margin-top: 10px; }
+      .usage input {
+        font-family: monospace;
+        margin-right: 3px;
+        padding: 2px 5px;
+        text-align: center;
+      }
+      .usage .point { width: 150px; }
+      .usage .class { width: 250px; }
+      footer {
+        color: #888;
+        font-size: 12px;
+        padding: 20px 0;
+      }
+      /* Icon Font: FontCustom */
+      @font-face {
+  font-family: "FontCustom";
+  src: url("./FontCustom_47af2c657108819de983567907fce90d.eot");
+  src: url("./FontCustom_47af2c657108819de983567907fce90d.eot?#iefix") format("embedded-opentype"),
+       url("./FontCustom_47af2c657108819de983567907fce90d.woff") format("woff"),
+       url("./FontCustom_47af2c657108819de983567907fce90d.ttf") format("truetype"),
+       url("./FontCustom_47af2c657108819de983567907fce90d.svg#FontCustom") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "FontCustom";
+    src: url("./FontCustom_47af2c657108819de983567907fce90d.svg#FontCustom") format("svg");
+  }
+}
+
+
+      [class^="awficon-"], [class*=" awficon-"]  {
+        display: inline-block;
+        font-family: "FontCustom";
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        font-size: 32px;
+      }
+
+
+      .name {
+        display: inline-block;
+        line-height: 32px;
+        transform: translateY(-7px);
+        margin-left: 10px;
+      }
+
+      .group {
+        padding: 10px 0;
+        break-inside: avoid;
+      }
+
+      #content {
+        columns: 275px;
+      }
+
+
+      /* spin */
+        .awficon-spin {
+          -webkit-animation: awficon-spin 2s infinite linear;
+          animation: awficon-spin 2s infinite linear;
+        }
+
+        .awficon-spin-slow {
+          -webkit-animation: awficon-spin 3s infinite linear;
+          animation: awficon-spin 3s infinite linear;
+        }
+
+        .awficon-spin-fast {
+          -webkit-animation: awficon-spin 1s infinite linear;
+          animation: awficon-spin 1s infinite linear;
+        }
+
+
+        /* Chrome, Safari, Opera */
+        @-webkit-keyframes awficon-spin {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+          100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+          }
+        }
+
+        /* Standard syntax */
+        @keyframes awficon-spin {
+          0% {
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+          }
+          100% {
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+          }
+        }
+
+
+    /* reverse-spin */
+      .awficon-reverse-spin {
+        -webkit-animation: awficon-reverse-spin 2s infinite linear;
+        animation: awficon-reverse-spin 2s infinite linear;
+      }
+
+      .awficon-reverse-spin-slow {
+        -webkit-animation: awficon-reverse-spin 3s infinite linear;
+        animation: awficon-reverse-spin 3s infinite linear;
+      }
+
+      .awficon-reverse-spin-fast {
+        -webkit-animation: awficon-reverse-spin 1s infinite linear;
+        animation: awficon-reverse-spin 1s infinite linear;
+      }
+
+
+      /* Chrome, Safari, Opera */
+      @-webkit-keyframes awficon-reverse-spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(-359deg);
+          transform: rotate(-359deg);
+        }
+      }
+
+      /* Standard syntax */
+      @keyframes awficon-reverse-spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        100% {
+          -webkit-transform: rotate(-359deg);
+          transform: rotate(-359deg);
+        }
+      }
+
+      .awficon-action-menu:before { content: "\f100"; }
+.awficon-adminhub-active:before { content: "\f101"; }
+.awficon-adminhub-inactive:before { content: "\f102"; }
+.awficon-alert:before { content: "\f103"; }
+.awficon-alert-announcement:before { content: "\f104"; }
+.awficon-alert-error:before { content: "\f105"; }
+.awficon-alert-history:before { content: "\f106"; }
+.awficon-alert-sign-in:before { content: "\f107"; }
+.awficon-arrow-down-thin:before { content: "\f108"; }
+.awficon-arrow-heavy-down:before { content: "\f109"; }
+.awficon-arrow-heavy-left:before { content: "\f10a"; }
+.awficon-arrow-heavy-right:before { content: "\f10b"; }
+.awficon-arrow-heavy-up:before { content: "\f10c"; }
+.awficon-arrow-left-thin:before { content: "\f10d"; }
+.awficon-arrow-right-thin:before { content: "\f10e"; }
+.awficon-arrow-up-thin:before { content: "\f10f"; }
+.awficon-artoo:before { content: "\f1f3"; }
+.awficon-at-at:before { content: "\f1f5"; }
+.awficon-attachment:before { content: "\f110"; }
+.awficon-audio-26px:before { content: "\f111"; }
+.awficon-audio-42px:before { content: "\f112"; }
+.awficon-avatar:before { content: "\f113"; }
+.awficon-avatar-lg:before { content: "\f114"; }
+.awficon-awards-45px:before { content: "\f115"; }
+.awficon-awf-logo:before { content: "\f116"; }
+.awficon-benefits-45px:before { content: "\f117"; }
+.awficon-bookmark:before { content: "\f118"; }
+.awficon-calendar:before { content: "\f119"; }
+.awficon-caret1-down:before { content: "\f11a"; }
+.awficon-caret1-up:before { content: "\f11b"; }
+.awficon-carousel-left:before { content: "\f11c"; }
+.awficon-carousel-right:before { content: "\f11d"; }
+.awficon-category-assets-devices:before { content: "\f11e"; }
+.awficon-category-awards:before { content: "\f11f"; }
+.awficon-category-awards-btl:before { content: "\f120"; }
+.awficon-category-awards-medium:before { content: "\f121"; }
+.awficon-category-bcg:before { content: "\f122"; }
+.awficon-category-benefits:before { content: "\f123"; }
+.awficon-category-btl:before { content: "\f124"; }
+.awficon-category-compensation:before { content: "\f125"; }
+.awficon-category-compensation-medium:before { content: "\f126"; }
+.awficon-category-expenses:before { content: "\f127"; }
+.awficon-category-expertise:before { content: "\f128"; }
+.awficon-category-finance:before { content: "\f129"; }
+.awficon-category-international:before { content: "\f12a"; }
+.awficon-category-jobs:before { content: "\f12b"; }
+.awficon-category-learning:before { content: "\f12c"; }
+.awficon-category-pbc:before { content: "\f12d"; }
+.awficon-category-personal-info:before { content: "\f12e"; }
+.awficon-category-procurement:before { content: "\f12f"; }
+.awficon-category-review-dates:before { content: "\f130"; }
+.awficon-category-security:before { content: "\f131"; }
+.awficon-category-time:before { content: "\f132"; }
+.awficon-category-travel:before { content: "\f133"; }
+.awficon-category-your-team:before { content: "\f134"; }
+.awficon-checkmark:before { content: "\f135"; }
+.awficon-checkmark-circle:before { content: "\f1fc"; }
+.awficon-chevron-down:before { content: "\f136"; }
+.awficon-chevron-up:before { content: "\f137"; }
+.awficon-circle-eigth-o:before { content: "\f138"; }
+.awficon-circle-quarter-o:before { content: "\f139"; }
+.awficon-circle-sixth-o:before { content: "\f13a"; }
+.awficon-clock:before { content: "\f13b"; }
+.awficon-close:before { content: "\f13c"; }
+.awficon-close-2:before { content: "\f13d"; }
+.awficon-coachtip-big:before { content: "\f13e"; }
+.awficon-coachtip-small:before { content: "\f13f"; }
+.awficon-collapse:before { content: "\f140"; }
+.awficon-comment:before { content: "\f141"; }
+.awficon-compensation-45px:before { content: "\f142"; }
+.awficon-component-circle:before { content: "\f1fd"; }
+.awficon-components-circle-fill:before { content: "\f1fe"; }
+.awficon-connections-60px:before { content: "\f143"; }
+.awficon-copy:before { content: "\f1fb"; }
+.awficon-dates-45px:before { content: "\f144"; }
+.awficon-death-star-construction:before { content: "\f1f4"; }
+.awficon-disclosure:before { content: "\f145"; }
+.awficon-discover:before { content: "\f146"; }
+.awficon-diversity:before { content: "\f1f9"; }
+.awficon-diversity-thin:before { content: "\f1fa"; }
+.awficon-download:before { content: "\f147"; }
+.awficon-drag-handle:before { content: "\f148"; }
+.awficon-edit:before { content: "\f149"; }
+.awficon-email:before { content: "\f14a"; }
+.awficon-emergency-24px:before { content: "\f14b"; }
+.awficon-emergency-45px:before { content: "\f14c"; }
+.awficon-enterprise:before { content: "\f14d"; }
+.awficon-enterprise-outline:before { content: "\f14e"; }
+.awficon-enterprise-outline-thin:before { content: "\f14f"; }
+.awficon-expand:before { content: "\f150"; }
+.awficon-file-collaborator-manage:before { content: "\f151"; }
+.awficon-file-html:before { content: "\f152"; }
+.awficon-file-image:before { content: "\f153"; }
+.awficon-file-pdf:before { content: "\f154"; }
+.awficon-file-presentation:before { content: "\f155"; }
+.awficon-file-spreadsheet:before { content: "\f156"; }
+.awficon-file-text:before { content: "\f157"; }
+.awficon-file-unknown:before { content: "\f158"; }
+.awficon-file-zip:before { content: "\f159"; }
+.awficon-folder:before { content: "\f15a"; }
+.awficon-folder-shared:before { content: "\f15b"; }
+.awficon-follow:before { content: "\f15c"; }
+.awficon-full-screen:before { content: "\f15d"; }
+.awficon-go-to:before { content: "\f15e"; }
+.awficon-grid-view:before { content: "\f15f"; }
+.awficon-hamburger1:before { content: "\f160"; }
+.awficon-home-active:before { content: "\f161"; }
+.awficon-home-inactive:before { content: "\f162"; }
+.awficon-ibm-logo:before { content: "\f163"; }
+.awficon-iconography-circle:before { content: "\f1ff"; }
+.awficon-iconography-circle-fill:before { content: "\f200"; }
+.awficon-info:before { content: "\f164"; }
+.awficon-international-45px:before { content: "\f165"; }
+.awficon-intro-circle:before { content: "\f201"; }
+.awficon-intro-circle-fill:before { content: "\f202"; }
+.awficon-join:before { content: "\f166"; }
+.awficon-leadership-24px:before { content: "\f167"; }
+.awficon-leadership-45px:before { content: "\f168"; }
+.awficon-leftnav-avatar-sm-active:before { content: "\f169"; }
+.awficon-leftnav-avatar-sm-inactive:before { content: "\f16a"; }
+.awficon-leftnav-ibmerhub-active:before { content: "\f16b"; }
+.awficon-leftnav-ibmerhub-inactive:before { content: "\f16c"; }
+.awficon-leftnav-managerhub-active:before { content: "\f16d"; }
+.awficon-leftnav-managerhub-inactive:before { content: "\f16e"; }
+.awficon-like:before { content: "\f16f"; }
+.awficon-link-arrow1:before { content: "\f170"; }
+.awficon-link-arrow2:before { content: "\f171"; }
+.awficon-list-view:before { content: "\f172"; }
+.awficon-location:before { content: "\f173"; }
+.awficon-location-map:before { content: "\f174"; }
+.awficon-logo-bluepages-text:before { content: "\f1f8"; }
+.awficon-malkaris:before { content: "\f175"; }
+.awficon-masthead-bell:before { content: "\f176"; }
+.awficon-masthead-links:before { content: "\f177"; }
+.awficon-media-65px:before { content: "\f178"; }
+.awficon-message-error:before { content: "\f179"; }
+.awficon-message-information:before { content: "\f17a"; }
+.awficon-message-success:before { content: "\f17b"; }
+.awficon-message-warning:before { content: "\f17c"; }
+.awficon-millennium-falcon:before { content: "\f17d"; }
+.awficon-minicard-awards:before { content: "\f17e"; }
+.awficon-minicard-btl:before { content: "\f17f"; }
+.awficon-minicard-category-compensation:before { content: "\f180"; }
+.awficon-minicard-category-personal-info:before { content: "\f181"; }
+.awficon-minicard-cms:before { content: "\f182"; }
+.awficon-minicard-communities:before { content: "\f183"; }
+.awficon-minicard-corpst:before { content: "\f184"; }
+.awficon-minicard-files:before { content: "\f185"; }
+.awficon-minicard-learning:before { content: "\f186"; }
+.awficon-minicard-media:before { content: "\f187"; }
+.awficon-minicard-minipulse:before { content: "\f188"; }
+.awficon-minicard-news:before { content: "\f189"; }
+.awficon-minicard-notecard:before { content: "\f18a"; }
+.awficon-minicard-places:before { content: "\f18b"; }
+.awficon-minicard-status:before { content: "\f18c"; }
+.awficon-minicard-stock:before { content: "\f18d"; }
+.awficon-minicard-taskcalendar:before { content: "\f18e"; }
+.awficon-minicard-team:before { content: "\f18f"; }
+.awficon-minicard-whatsnew:before { content: "\f190"; }
+.awficon-minimize:before { content: "\f191"; }
+.awficon-mute:before { content: "\f192"; }
+.awficon-mute-communities:before { content: "\f193"; }
+.awficon-palette-circle:before { content: "\f203"; }
+.awficon-palette-circle-fill:before { content: "\f204"; }
+.awficon-pause:before { content: "\f194"; }
+.awficon-personal-information-45px:before { content: "\f195"; }
+.awficon-phone:before { content: "\f196"; }
+.awficon-pin:before { content: "\f197"; }
+.awficon-places-bcg-expanded:before { content: "\f198"; }
+.awficon-places-bcg-medium:before { content: "\f199"; }
+.awficon-places-bluepages:before { content: "\f19a"; }
+.awficon-places-bluepages-expanded:before { content: "\f19b"; }
+.awficon-places-careersmart:before { content: "\f19c"; }
+.awficon-places-careersmart-expanded:before { content: "\f19d"; }
+.awficon-places-checkpoint-expanded:before { content: "\f19e"; }
+.awficon-places-checkpoint-medium:before { content: "\f19f"; }
+.awficon-places-connections:before { content: "\f1a0"; }
+.awficon-places-connections-expanded:before { content: "\f1a1"; }
+.awficon-places-devices-45px:before { content: "\f1a2"; }
+.awficon-places-devices-expanded:before { content: "\f1a3"; }
+.awficon-places-devices-medium:before { content: "\f1a4"; }
+.awficon-places-expenses:before { content: "\f1a5"; }
+.awficon-places-expenses-expanded:before { content: "\f1a6"; }
+.awficon-places-finance-expanded:before { content: "\f1a7"; }
+.awficon-places-finance-medium:before { content: "\f1a8"; }
+.awficon-places-it:before { content: "\f1a9"; }
+.awficon-places-it-expanded:before { content: "\f1aa"; }
+.awficon-places-jobs-expanded:before { content: "\f1ab"; }
+.awficon-places-jobs-medium:before { content: "\f1ac"; }
+.awficon-places-learning-expanded:before { content: "\f1ad"; }
+.awficon-places-learning-medium:before { content: "\f1ae"; }
+.awficon-places-mail-notes:before { content: "\f1af"; }
+.awficon-places-mail-notes-expanded:before { content: "\f1b0"; }
+.awficon-places-mail-verse:before { content: "\f1b1"; }
+.awficon-places-mail-verse-expanded:before { content: "\f1b2"; }
+.awficon-places-meetings:before { content: "\f1b3"; }
+.awficon-places-meetings-expanded:before { content: "\f1b4"; }
+.awficon-places-pbc-expanded:before { content: "\f1b5"; }
+.awficon-places-pbc-medium:before { content: "\f1b6"; }
+.awficon-places-procurement-expanded:before { content: "\f1b7"; }
+.awficon-places-procurement-medium:before { content: "\f1b8"; }
+.awficon-places-productivity-expanded:before { content: "\f1b9"; }
+.awficon-places-productivity-medium:before { content: "\f1ba"; }
+.awficon-places-professional:before { content: "\f1bb"; }
+.awficon-places-salesconnect:before { content: "\f1bc"; }
+.awficon-places-salesconnect-expanded:before { content: "\f1bd"; }
+.awficon-places-security:before { content: "\f1be"; }
+.awficon-places-security-expanded:before { content: "\f1bf"; }
+.awficon-places-security-medium:before { content: "\f1c0"; }
+.awficon-places-sitemap-expanded:before { content: "\f1c1"; }
+.awficon-places-sitemap-medium:before { content: "\f1c2"; }
+.awficon-places-time-expanded:before { content: "\f1c3"; }
+.awficon-places-time-medium:before { content: "\f1c4"; }
+.awficon-places-travel-expanded:before { content: "\f1c5"; }
+.awficon-places-travel-medium:before { content: "\f1c6"; }
+.awficon-play:before { content: "\f1c7"; }
+.awficon-playhead:before { content: "\f1c8"; }
+.awficon-quote:before { content: "\f1c9"; }
+.awficon-rank:before { content: "\f1ca"; }
+.awficon-reading-26px:before { content: "\f1cb"; }
+.awficon-reading-42px:before { content: "\f1cc"; }
+.awficon-release-notes:before { content: "\f1cd"; }
+.awficon-right-nav-control-close:before { content: "\f1ce"; }
+.awficon-right-nav-ctrl:before { content: "\f1cf"; }
+.awficon-rotate:before { content: "\f1d0"; }
+.awficon-rotate-left:before { content: "\f1d1"; }
+.awficon-search-clear:before { content: "\f1d2"; }
+.awficon-search1:before { content: "\f1d3"; }
+.awficon-secondary-cta-arrow:before { content: "\f1d4"; }
+.awficon-secondary-cta-arrow-back:before { content: "\f1d5"; }
+.awficon-settings:before { content: "\f1d6"; }
+.awficon-share:before { content: "\f1d7"; }
+.awficon-show-less:before { content: "\f1d8"; }
+.awficon-show-more:before { content: "\f1d9"; }
+.awficon-simple-globe:before { content: "\f1da"; }
+.awficon-sort:before { content: "\f1db"; }
+.awficon-speaker:before { content: "\f1dc"; }
+.awficon-st-available:before { content: "\f1dd"; }
+.awficon-st-available-mobile:before { content: "\f1de"; }
+.awficon-st-away:before { content: "\f1df"; }
+.awficon-st-away-mobile:before { content: "\f1e0"; }
+.awficon-st-dnd-mobile:before { content: "\f1e1"; }
+.awficon-st-meeting-1:before { content: "\f1e2"; }
+.awficon-st-meeting-2:before { content: "\f1e3"; }
+.awficon-st-meeting-mobile:before { content: "\f1e4"; }
+.awficon-st-meeting-mobile-1:before { content: "\f1e5"; }
+.awficon-st-meeting-mobile-2:before { content: "\f1e6"; }
+.awficon-st-offline-dnd:before { content: "\f1e7"; }
+.awficon-star-fill:before { content: "\f1e8"; }
+.awficon-star-stroke:before { content: "\f1e9"; }
+.awficon-steve-circle:before { content: "\f1ea"; }
+.awficon-tie-fighter:before { content: "\f1f6"; }
+.awficon-time-45px:before { content: "\f1eb"; }
+.awficon-trash:before { content: "\f1f7"; }
+.awficon-typography-circle:before { content: "\f205"; }
+.awficon-typography-circle-fill:before { content: "\f206"; }
+.awficon-upload:before { content: "\f1ec"; }
+.awficon-video-26px:before { content: "\f1ed"; }
+.awficon-video-42px:before { content: "\f1ee"; }
+.awficon-w3-logo:before { content: "\f1ef"; }
+.awficon-wreath:before { content: "\f1f0"; }
+.awficon-your-team-45px:before { content: "\f1f1"; }
+    </style>
+    <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <script>
+      function toggleCharacters() {
+        var body = document.getElementsByTagName('body')[0];
+        body.className = body.className === 'characters-off' ? '' : 'characters-off';
+      }
+    </script>
+  </head>
+  <body class="characters-off">
+    <div id="page" class="container">
+      <header>
+        <h1>FontCustom contains 262 glyphs:</h1>
+        <a onclick="toggleCharacters(); return false;" href="#">Toggle Preview Characters</a>
+      </header>
+      <div id="content">
+      
+        <div class="group">
+          <i id="awficon-action-menu" class="awficon-action-menu"></i>
+          <div class="name">action-menu</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-adminhub-active" class="awficon-adminhub-active"></i>
+          <div class="name">adminhub-active</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-adminhub-inactive" class="awficon-adminhub-inactive"></i>
+          <div class="name">adminhub-inactive</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-alert" class="awficon-alert"></i>
+          <div class="name">alert</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-alert-announcement" class="awficon-alert-announcement"></i>
+          <div class="name">alert-announcement</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-alert-error" class="awficon-alert-error"></i>
+          <div class="name">alert-error</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-alert-history" class="awficon-alert-history"></i>
+          <div class="name">alert-history</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-alert-sign-in" class="awficon-alert-sign-in"></i>
+          <div class="name">alert-sign-in</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-down-thin" class="awficon-arrow-down-thin"></i>
+          <div class="name">arrow-down-thin</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-heavy-down" class="awficon-arrow-heavy-down"></i>
+          <div class="name">arrow-heavy-down</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-heavy-left" class="awficon-arrow-heavy-left"></i>
+          <div class="name">arrow-heavy-left</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-heavy-right" class="awficon-arrow-heavy-right"></i>
+          <div class="name">arrow-heavy-right</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-heavy-up" class="awficon-arrow-heavy-up"></i>
+          <div class="name">arrow-heavy-up</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-left-thin" class="awficon-arrow-left-thin"></i>
+          <div class="name">arrow-left-thin</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-right-thin" class="awficon-arrow-right-thin"></i>
+          <div class="name">arrow-right-thin</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-arrow-up-thin" class="awficon-arrow-up-thin"></i>
+          <div class="name">arrow-up-thin</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-attachment" class="awficon-attachment"></i>
+          <div class="name">attachment</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-audio-26px" class="awficon-audio-26px"></i>
+          <div class="name">audio-26px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-audio-42px" class="awficon-audio-42px"></i>
+          <div class="name">audio-42px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-avatar" class="awficon-avatar"></i>
+          <div class="name">avatar</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-avatar-lg" class="awficon-avatar-lg"></i>
+          <div class="name">avatar-lg</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-awards-45px" class="awficon-awards-45px"></i>
+          <div class="name">awards-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-awf-logo" class="awficon-awf-logo"></i>
+          <div class="name">awf-logo</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-benefits-45px" class="awficon-benefits-45px"></i>
+          <div class="name">benefits-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-bookmark" class="awficon-bookmark"></i>
+          <div class="name">bookmark</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-calendar" class="awficon-calendar"></i>
+          <div class="name">calendar</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-caret1-down" class="awficon-caret1-down"></i>
+          <div class="name">caret1-down</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-caret1-up" class="awficon-caret1-up"></i>
+          <div class="name">caret1-up</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-carousel-left" class="awficon-carousel-left"></i>
+          <div class="name">carousel-left</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-carousel-right" class="awficon-carousel-right"></i>
+          <div class="name">carousel-right</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-assets-devices" class="awficon-category-assets-devices"></i>
+          <div class="name">category-assets-devices</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-awards" class="awficon-category-awards"></i>
+          <div class="name">category-awards</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-awards-btl" class="awficon-category-awards-btl"></i>
+          <div class="name">category-awards-btl</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-awards-medium" class="awficon-category-awards-medium"></i>
+          <div class="name">category-awards-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-bcg" class="awficon-category-bcg"></i>
+          <div class="name">category-bcg</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-benefits" class="awficon-category-benefits"></i>
+          <div class="name">category-benefits</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-btl" class="awficon-category-btl"></i>
+          <div class="name">category-btl</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-compensation" class="awficon-category-compensation"></i>
+          <div class="name">category-compensation</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-compensation-medium" class="awficon-category-compensation-medium"></i>
+          <div class="name">category-compensation-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-expenses" class="awficon-category-expenses"></i>
+          <div class="name">category-expenses</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-expertise" class="awficon-category-expertise"></i>
+          <div class="name">category-expertise</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-finance" class="awficon-category-finance"></i>
+          <div class="name">category-finance</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-international" class="awficon-category-international"></i>
+          <div class="name">category-international</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-jobs" class="awficon-category-jobs"></i>
+          <div class="name">category-jobs</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-learning" class="awficon-category-learning"></i>
+          <div class="name">category-learning</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-pbc" class="awficon-category-pbc"></i>
+          <div class="name">category-pbc</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-personal-info" class="awficon-category-personal-info"></i>
+          <div class="name">category-personal-info</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-procurement" class="awficon-category-procurement"></i>
+          <div class="name">category-procurement</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-review-dates" class="awficon-category-review-dates"></i>
+          <div class="name">category-review-dates</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-security" class="awficon-category-security"></i>
+          <div class="name">category-security</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-time" class="awficon-category-time"></i>
+          <div class="name">category-time</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-travel" class="awficon-category-travel"></i>
+          <div class="name">category-travel</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-category-your-team" class="awficon-category-your-team"></i>
+          <div class="name">category-your-team</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-checkmark" class="awficon-checkmark"></i>
+          <div class="name">checkmark</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-checkmark-circle" class="awficon-checkmark-circle"></i>
+          <div class="name">checkmark-circle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-chevron-down" class="awficon-chevron-down"></i>
+          <div class="name">chevron-down</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-chevron-up" class="awficon-chevron-up"></i>
+          <div class="name">chevron-up</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-circle-eigth-o" class="awficon-circle-eigth-o"></i>
+          <div class="name">circle-eigth-o</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-circle-quarter-o" class="awficon-circle-quarter-o"></i>
+          <div class="name">circle-quarter-o</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-circle-sixth-o" class="awficon-circle-sixth-o"></i>
+          <div class="name">circle-sixth-o</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-clock" class="awficon-clock"></i>
+          <div class="name">clock</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-close" class="awficon-close"></i>
+          <div class="name">close</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-close-2" class="awficon-close-2"></i>
+          <div class="name">close-2</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-coachtip-big" class="awficon-coachtip-big"></i>
+          <div class="name">coachtip-big</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-coachtip-small" class="awficon-coachtip-small"></i>
+          <div class="name">coachtip-small</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-collapse" class="awficon-collapse"></i>
+          <div class="name">collapse</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-comment" class="awficon-comment"></i>
+          <div class="name">comment</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-compensation-45px" class="awficon-compensation-45px"></i>
+          <div class="name">compensation-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-component-circle" class="awficon-component-circle"></i>
+          <div class="name">component-circle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-components-circle-fill" class="awficon-components-circle-fill"></i>
+          <div class="name">components-circle-fill</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-connections-60px" class="awficon-connections-60px"></i>
+          <div class="name">connections-60px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-copy" class="awficon-copy"></i>
+          <div class="name">copy</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-dates-45px" class="awficon-dates-45px"></i>
+          <div class="name">dates-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-disclosure" class="awficon-disclosure"></i>
+          <div class="name">disclosure</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-discover" class="awficon-discover"></i>
+          <div class="name">discover</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-diversity" class="awficon-diversity"></i>
+          <div class="name">diversity</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-diversity-thin" class="awficon-diversity-thin"></i>
+          <div class="name">diversity-thin</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-download" class="awficon-download"></i>
+          <div class="name">download</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-drag-handle" class="awficon-drag-handle"></i>
+          <div class="name">drag-handle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-edit" class="awficon-edit"></i>
+          <div class="name">edit</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-email" class="awficon-email"></i>
+          <div class="name">email</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-emergency-24px" class="awficon-emergency-24px"></i>
+          <div class="name">emergency-24px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-emergency-45px" class="awficon-emergency-45px"></i>
+          <div class="name">emergency-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-expand" class="awficon-expand"></i>
+          <div class="name">expand</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-collaborator-manage" class="awficon-file-collaborator-manage"></i>
+          <div class="name">file-collaborator-manage</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-html" class="awficon-file-html"></i>
+          <div class="name">file-html</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-image" class="awficon-file-image"></i>
+          <div class="name">file-image</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-pdf" class="awficon-file-pdf"></i>
+          <div class="name">file-pdf</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-presentation" class="awficon-file-presentation"></i>
+          <div class="name">file-presentation</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-spreadsheet" class="awficon-file-spreadsheet"></i>
+          <div class="name">file-spreadsheet</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-text" class="awficon-file-text"></i>
+          <div class="name">file-text</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-unknown" class="awficon-file-unknown"></i>
+          <div class="name">file-unknown</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-file-zip" class="awficon-file-zip"></i>
+          <div class="name">file-zip</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-folder" class="awficon-folder"></i>
+          <div class="name">folder</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-folder-shared" class="awficon-folder-shared"></i>
+          <div class="name">folder-shared</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-follow" class="awficon-follow"></i>
+          <div class="name">follow</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-full-screen" class="awficon-full-screen"></i>
+          <div class="name">full-screen</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-go-to" class="awficon-go-to"></i>
+          <div class="name">go-to</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-grid-view" class="awficon-grid-view"></i>
+          <div class="name">grid-view</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-hamburger1" class="awficon-hamburger1"></i>
+          <div class="name">hamburger1</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-home-active" class="awficon-home-active"></i>
+          <div class="name">home-active</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-home-inactive" class="awficon-home-inactive"></i>
+          <div class="name">home-inactive</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-ibm-logo" class="awficon-ibm-logo"></i>
+          <div class="name">ibm-logo</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-iconography-circle" class="awficon-iconography-circle"></i>
+          <div class="name">iconography-circle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-iconography-circle-fill" class="awficon-iconography-circle-fill"></i>
+          <div class="name">iconography-circle-fill</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-info" class="awficon-info"></i>
+          <div class="name">info</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-international-45px" class="awficon-international-45px"></i>
+          <div class="name">international-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-intro-circle" class="awficon-intro-circle"></i>
+          <div class="name">intro-circle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-intro-circle-fill" class="awficon-intro-circle-fill"></i>
+          <div class="name">intro-circle-fill</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-join" class="awficon-join"></i>
+          <div class="name">join</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leadership-24px" class="awficon-leadership-24px"></i>
+          <div class="name">leadership-24px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leadership-45px" class="awficon-leadership-45px"></i>
+          <div class="name">leadership-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leftnav-avatar-sm-active" class="awficon-leftnav-avatar-sm-active"></i>
+          <div class="name">leftnav-avatar-sm-active</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leftnav-avatar-sm-inactive" class="awficon-leftnav-avatar-sm-inactive"></i>
+          <div class="name">leftnav-avatar-sm-inactive</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leftnav-ibmerhub-active" class="awficon-leftnav-ibmerhub-active"></i>
+          <div class="name">leftnav-ibmerhub-active</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leftnav-ibmerhub-inactive" class="awficon-leftnav-ibmerhub-inactive"></i>
+          <div class="name">leftnav-ibmerhub-inactive</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leftnav-managerhub-active" class="awficon-leftnav-managerhub-active"></i>
+          <div class="name">leftnav-managerhub-active</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-leftnav-managerhub-inactive" class="awficon-leftnav-managerhub-inactive"></i>
+          <div class="name">leftnav-managerhub-inactive</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-like" class="awficon-like"></i>
+          <div class="name">like</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-link-arrow1" class="awficon-link-arrow1"></i>
+          <div class="name">link-arrow1</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-link-arrow2" class="awficon-link-arrow2"></i>
+          <div class="name">link-arrow2</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-list-view" class="awficon-list-view"></i>
+          <div class="name">list-view</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-location" class="awficon-location"></i>
+          <div class="name">location</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-location-map" class="awficon-location-map"></i>
+          <div class="name">location-map</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-logo-bluepages-text" class="awficon-logo-bluepages-text"></i>
+          <div class="name">logo-bluepages-text</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-masthead-bell" class="awficon-masthead-bell"></i>
+          <div class="name">masthead-bell</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-masthead-links" class="awficon-masthead-links"></i>
+          <div class="name">masthead-links</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-media-65px" class="awficon-media-65px"></i>
+          <div class="name">media-65px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-message-error" class="awficon-message-error"></i>
+          <div class="name">message-error</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-message-information" class="awficon-message-information"></i>
+          <div class="name">message-information</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-message-success" class="awficon-message-success"></i>
+          <div class="name">message-success</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-message-warning" class="awficon-message-warning"></i>
+          <div class="name">message-warning</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-awards" class="awficon-minicard-awards"></i>
+          <div class="name">minicard-awards</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-btl" class="awficon-minicard-btl"></i>
+          <div class="name">minicard-btl</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-category-compensation" class="awficon-minicard-category-compensation"></i>
+          <div class="name">minicard-category-compensation</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-category-personal-info" class="awficon-minicard-category-personal-info"></i>
+          <div class="name">minicard-category-personal-info</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-cms" class="awficon-minicard-cms"></i>
+          <div class="name">minicard-cms</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-communities" class="awficon-minicard-communities"></i>
+          <div class="name">minicard-communities</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-corpst" class="awficon-minicard-corpst"></i>
+          <div class="name">minicard-corpst</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-files" class="awficon-minicard-files"></i>
+          <div class="name">minicard-files</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-learning" class="awficon-minicard-learning"></i>
+          <div class="name">minicard-learning</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-media" class="awficon-minicard-media"></i>
+          <div class="name">minicard-media</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-minipulse" class="awficon-minicard-minipulse"></i>
+          <div class="name">minicard-minipulse</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-news" class="awficon-minicard-news"></i>
+          <div class="name">minicard-news</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-notecard" class="awficon-minicard-notecard"></i>
+          <div class="name">minicard-notecard</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-places" class="awficon-minicard-places"></i>
+          <div class="name">minicard-places</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-status" class="awficon-minicard-status"></i>
+          <div class="name">minicard-status</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-stock" class="awficon-minicard-stock"></i>
+          <div class="name">minicard-stock</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-taskcalendar" class="awficon-minicard-taskcalendar"></i>
+          <div class="name">minicard-taskcalendar</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-team" class="awficon-minicard-team"></i>
+          <div class="name">minicard-team</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minicard-whatsnew" class="awficon-minicard-whatsnew"></i>
+          <div class="name">minicard-whatsnew</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-minimize" class="awficon-minimize"></i>
+          <div class="name">minimize</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-mute" class="awficon-mute"></i>
+          <div class="name">mute</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-mute-communities" class="awficon-mute-communities"></i>
+          <div class="name">mute-communities</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-palette-circle" class="awficon-palette-circle"></i>
+          <div class="name">palette-circle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-palette-circle-fill" class="awficon-palette-circle-fill"></i>
+          <div class="name">palette-circle-fill</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-pause" class="awficon-pause"></i>
+          <div class="name">pause</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-personal-information-45px" class="awficon-personal-information-45px"></i>
+          <div class="name">personal-information-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-phone" class="awficon-phone"></i>
+          <div class="name">phone</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-pin" class="awficon-pin"></i>
+          <div class="name">pin</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-bcg-expanded" class="awficon-places-bcg-expanded"></i>
+          <div class="name">places-bcg-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-bcg-medium" class="awficon-places-bcg-medium"></i>
+          <div class="name">places-bcg-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-bluepages" class="awficon-places-bluepages"></i>
+          <div class="name">places-bluepages</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-bluepages-expanded" class="awficon-places-bluepages-expanded"></i>
+          <div class="name">places-bluepages-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-careersmart" class="awficon-places-careersmart"></i>
+          <div class="name">places-careersmart</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-careersmart-expanded" class="awficon-places-careersmart-expanded"></i>
+          <div class="name">places-careersmart-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-checkpoint-expanded" class="awficon-places-checkpoint-expanded"></i>
+          <div class="name">places-checkpoint-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-checkpoint-medium" class="awficon-places-checkpoint-medium"></i>
+          <div class="name">places-checkpoint-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-connections" class="awficon-places-connections"></i>
+          <div class="name">places-connections</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-connections-expanded" class="awficon-places-connections-expanded"></i>
+          <div class="name">places-connections-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-devices-45px" class="awficon-places-devices-45px"></i>
+          <div class="name">places-devices-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-devices-expanded" class="awficon-places-devices-expanded"></i>
+          <div class="name">places-devices-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-devices-medium" class="awficon-places-devices-medium"></i>
+          <div class="name">places-devices-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-expenses" class="awficon-places-expenses"></i>
+          <div class="name">places-expenses</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-expenses-expanded" class="awficon-places-expenses-expanded"></i>
+          <div class="name">places-expenses-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-finance-expanded" class="awficon-places-finance-expanded"></i>
+          <div class="name">places-finance-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-finance-medium" class="awficon-places-finance-medium"></i>
+          <div class="name">places-finance-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-it" class="awficon-places-it"></i>
+          <div class="name">places-it</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-it-expanded" class="awficon-places-it-expanded"></i>
+          <div class="name">places-it-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-jobs-expanded" class="awficon-places-jobs-expanded"></i>
+          <div class="name">places-jobs-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-jobs-medium" class="awficon-places-jobs-medium"></i>
+          <div class="name">places-jobs-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-learning-expanded" class="awficon-places-learning-expanded"></i>
+          <div class="name">places-learning-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-learning-medium" class="awficon-places-learning-medium"></i>
+          <div class="name">places-learning-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-mail-notes" class="awficon-places-mail-notes"></i>
+          <div class="name">places-mail-notes</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-mail-notes-expanded" class="awficon-places-mail-notes-expanded"></i>
+          <div class="name">places-mail-notes-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-mail-verse" class="awficon-places-mail-verse"></i>
+          <div class="name">places-mail-verse</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-mail-verse-expanded" class="awficon-places-mail-verse-expanded"></i>
+          <div class="name">places-mail-verse-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-meetings" class="awficon-places-meetings"></i>
+          <div class="name">places-meetings</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-meetings-expanded" class="awficon-places-meetings-expanded"></i>
+          <div class="name">places-meetings-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-pbc-expanded" class="awficon-places-pbc-expanded"></i>
+          <div class="name">places-pbc-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-pbc-medium" class="awficon-places-pbc-medium"></i>
+          <div class="name">places-pbc-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-procurement-expanded" class="awficon-places-procurement-expanded"></i>
+          <div class="name">places-procurement-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-procurement-medium" class="awficon-places-procurement-medium"></i>
+          <div class="name">places-procurement-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-productivity-expanded" class="awficon-places-productivity-expanded"></i>
+          <div class="name">places-productivity-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-productivity-medium" class="awficon-places-productivity-medium"></i>
+          <div class="name">places-productivity-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-professional" class="awficon-places-professional"></i>
+          <div class="name">places-professional</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-salesconnect" class="awficon-places-salesconnect"></i>
+          <div class="name">places-salesconnect</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-salesconnect-expanded" class="awficon-places-salesconnect-expanded"></i>
+          <div class="name">places-salesconnect-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-security" class="awficon-places-security"></i>
+          <div class="name">places-security</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-security-expanded" class="awficon-places-security-expanded"></i>
+          <div class="name">places-security-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-security-medium" class="awficon-places-security-medium"></i>
+          <div class="name">places-security-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-sitemap-expanded" class="awficon-places-sitemap-expanded"></i>
+          <div class="name">places-sitemap-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-sitemap-medium" class="awficon-places-sitemap-medium"></i>
+          <div class="name">places-sitemap-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-time-expanded" class="awficon-places-time-expanded"></i>
+          <div class="name">places-time-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-time-medium" class="awficon-places-time-medium"></i>
+          <div class="name">places-time-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-travel-expanded" class="awficon-places-travel-expanded"></i>
+          <div class="name">places-travel-expanded</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-places-travel-medium" class="awficon-places-travel-medium"></i>
+          <div class="name">places-travel-medium</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-play" class="awficon-play"></i>
+          <div class="name">play</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-playhead" class="awficon-playhead"></i>
+          <div class="name">playhead</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-quote" class="awficon-quote"></i>
+          <div class="name">quote</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-rank" class="awficon-rank"></i>
+          <div class="name">rank</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-reading-26px" class="awficon-reading-26px"></i>
+          <div class="name">reading-26px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-reading-42px" class="awficon-reading-42px"></i>
+          <div class="name">reading-42px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-release-notes" class="awficon-release-notes"></i>
+          <div class="name">release-notes</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-right-nav-control-close" class="awficon-right-nav-control-close"></i>
+          <div class="name">right-nav-control-close</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-right-nav-ctrl" class="awficon-right-nav-ctrl"></i>
+          <div class="name">right-nav-ctrl</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-rotate" class="awficon-rotate"></i>
+          <div class="name">rotate</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-rotate-left" class="awficon-rotate-left"></i>
+          <div class="name">rotate-left</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-search-clear" class="awficon-search-clear"></i>
+          <div class="name">search-clear</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-search1" class="awficon-search1"></i>
+          <div class="name">search1</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-secondary-cta-arrow" class="awficon-secondary-cta-arrow"></i>
+          <div class="name">secondary-cta-arrow</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-secondary-cta-arrow-back" class="awficon-secondary-cta-arrow-back"></i>
+          <div class="name">secondary-cta-arrow-back</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-settings" class="awficon-settings"></i>
+          <div class="name">settings</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-share" class="awficon-share"></i>
+          <div class="name">share</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-show-less" class="awficon-show-less"></i>
+          <div class="name">show-less</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-show-more" class="awficon-show-more"></i>
+          <div class="name">show-more</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-sort" class="awficon-sort"></i>
+          <div class="name">sort</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-speaker" class="awficon-speaker"></i>
+          <div class="name">speaker</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-available" class="awficon-st-available"></i>
+          <div class="name">st-available</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-available-mobile" class="awficon-st-available-mobile"></i>
+          <div class="name">st-available-mobile</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-away" class="awficon-st-away"></i>
+          <div class="name">st-away</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-away-mobile" class="awficon-st-away-mobile"></i>
+          <div class="name">st-away-mobile</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-dnd-mobile" class="awficon-st-dnd-mobile"></i>
+          <div class="name">st-dnd-mobile</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-meeting-1" class="awficon-st-meeting-1"></i>
+          <div class="name">st-meeting-1</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-meeting-2" class="awficon-st-meeting-2"></i>
+          <div class="name">st-meeting-2</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-meeting-mobile" class="awficon-st-meeting-mobile"></i>
+          <div class="name">st-meeting-mobile</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-meeting-mobile-1" class="awficon-st-meeting-mobile-1"></i>
+          <div class="name">st-meeting-mobile-1</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-meeting-mobile-2" class="awficon-st-meeting-mobile-2"></i>
+          <div class="name">st-meeting-mobile-2</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-st-offline-dnd" class="awficon-st-offline-dnd"></i>
+          <div class="name">st-offline-dnd</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-star-fill" class="awficon-star-fill"></i>
+          <div class="name">star-fill</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-star-stroke" class="awficon-star-stroke"></i>
+          <div class="name">star-stroke</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-time-45px" class="awficon-time-45px"></i>
+          <div class="name">time-45px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-trash" class="awficon-trash"></i>
+          <div class="name">trash</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-typography-circle" class="awficon-typography-circle"></i>
+          <div class="name">typography-circle</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-typography-circle-fill" class="awficon-typography-circle-fill"></i>
+          <div class="name">typography-circle-fill</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-upload" class="awficon-upload"></i>
+          <div class="name">upload</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-video-26px" class="awficon-video-26px"></i>
+          <div class="name">video-26px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-video-42px" class="awficon-video-42px"></i>
+          <div class="name">video-42px</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-w3-logo" class="awficon-w3-logo"></i>
+          <div class="name">w3-logo</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-wreath" class="awficon-wreath"></i>
+          <div class="name">wreath</div>
+        </div>
+      
+        <div class="group">
+          <i id="awficon-your-team-45px" class="awficon-your-team-45px"></i>
+          <div class="name">your-team-45px</div>
+        </div>
+      
+      </div>
+      <footer>
+        Made with love using <a href="http://fontcustom.com">Font Custom</a>.
+      </footer>
+    </div>
+  </body>
+</html>
