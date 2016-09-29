@@ -8,7 +8,7 @@
 
 ### Important Protractor concepts
 
-# Select an element
+#### Select an element
 ```
 element(by.css('someCSS'));
 element(by.className('comeClass'));
@@ -16,17 +16,17 @@ element(by.id('someID'));
 element(by.tagName('someTag'));
 ```
 
-# Select all of a type of element
+#### Select all of a type of element
 ```
 element.all(by.css('someCSS'));
 ```
 
-# Click an element
+#### Click an element
 ```
 element(by.css('someCSS')).click();
 ```
 
-# Fill an input
+#### Fill an input
 ```
 element(by.css('someCSS')).sendKeys('some text');
 ```
