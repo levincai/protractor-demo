@@ -11,7 +11,7 @@
 #### Select an element
 ```
 element(by.css('someCSS'));
-element(by.className('comeClass'));
+element(by.className('someClass'));
 element(by.id('someID'));
 element(by.tagName('someTag'));
 ```
@@ -29,6 +29,11 @@ element(by.css('someCSS')).click();
 #### Fill an input
 ```
 element(by.css('someCSS')).sendKeys('some text');
+```
+
+#### Goto a url
+```
+browser.get('http://example.com/something');
 ```
 
 
